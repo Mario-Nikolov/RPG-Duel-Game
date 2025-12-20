@@ -4,33 +4,34 @@ public class Elf extends Character implements Playable{
 
     final int maxHealth = 100;
     public Elf(String name){
-        this.setName(name);
-        this.setDamage(16);
-        this.setHealth(maxHealth);
-        this.isAbilityOn=false;
-        this.type="elf";
+        setName(name);
+        setDamage(16);
+        setHealth(maxHealth);
+        isAbilityOn=false;
+        type="elf";
     }
     public boolean getIsAbilityOn() {return isAbilityOn;}
     public String getType(){return type;}
 
     @Override
     void takeDamage(int damage){
-        int currentHealth = this.getHealth();
+        int currentHealth = getHealth();
         if(isAbilityOn) {
-            this.setHealth(reduceEnemyDamage(damage));
+            setHealth(reduceEnemyDamage(damage));
             isAbilityOn=false;
         }
         else
-            this.setHealth(currentHealth-=damage);
+            setHealth(currentHealth-=damage);
     }
     @Override
     boolean isAlive(){
-        return this.getHealth() > 0;
+        return getHealth() > 0;
     }
     @Override
-    void useAbility(Character target){  //Включва абилити
-        if(!isAbilityOn)
+    void useAbility(){//Включва абилити
+        if(isAbilityOn)
             isAbilityOn=true;
+        System.out.println(this.getName() + " reduced damage taken from the hext hit!");
     }
     int reduceEnemyDamage(int enemyDamage){
         return enemyDamage-4;
@@ -38,14 +39,14 @@ public class Elf extends Character implements Playable{
     @Override
     void showInfo(){
         System.out.println("Elf{" +
-                "Name: " + this.getName() +
-                "   Health: " + this.getHealth()+
-                "   Damage: " + this.getDamage() +
+                "Name: " + getName() +
+                "   Health: " + getHealth()+
+                "   Damage: " + getDamage() +
                 '}');
     }
     @Override
     public void attack(Character target){
-        target.takeDamage(this.getDamage());
+        target.takeDamage(getDamage());
     }
 
 

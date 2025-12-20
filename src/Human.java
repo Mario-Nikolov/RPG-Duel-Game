@@ -2,44 +2,45 @@ public class Human extends Character implements Playable{
 
     final int maxHealth = 120;
     public Human(String name){
-        this.setHealth(maxHealth);
-        this.setName(name);
-        this.setDamage(12);
-        this.type="human";
+        setHealth(maxHealth);
+        setName(name);
+        setDamage(12);
+        type="human";
 
     }
     public String getType(){return type;}
     @Override
     void takeDamage(int damage){
-        int currentHealth  =this.getHealth();
-        this.setHealth(currentHealth-=damage);
+        int currentHealth = getHealth();
+        setHealth(currentHealth-=damage);
     }
 
     @Override
     boolean isAlive(){
-        return this.getHealth() > 0;
+        return getHealth() > 0;
     }
 
     @Override
-    void useAbility(Character target){  //Healing
-        this.setHealth(increaseHealth());
+    void useAbility(){  //Healing
+        setHealth(increaseHealth());
     }
     int increaseHealth(){
-        int currentHealth = this.getHealth();
+        int currentHealth = getHealth();
+        System.out.println(getName() + " healed! (+12HP) ");
         return currentHealth+=12;
     }
 
     @Override
     void showInfo(){
         System.out.println("Human{" +
-                "Name: " + this.getName()  +
-                "   Health: " + this.getHealth()+
-                "   Damage: " + this.getDamage() +
+                "Name: " + getName()  +
+                "   Health: " + getHealth()+
+                "   Damage: " + getDamage() +
                 '}');
     }
     @Override
     public void attack(Character target){
-        target.takeDamage(this.getDamage());
+        target.takeDamage(getDamage());
     }
 
 }

@@ -67,8 +67,7 @@ public class Plays {
                        return;
                    }
                    case 2 -> {
-                       System.out.println(yourCharacter.getName()+ " used ability! \n");
-                       yourCharacter.useAbility(yourCharacter);
+                       yourCharacter.useAbility();
                        return;
                    }
                    default -> {

@@ -9,7 +9,7 @@ public class BotMoves {
 
         //Ако избегне удар и може да убие в следващ ход -> абилити
         else if(bot.getHealth()> bot.reduceEnemyDamage(realPlayer.getDamage()) && bot.getDamage()>= realPlayer.getHealth())
-            bot.useAbility(bot);
+            bot.useAbility();
 
         else bot.attack(realPlayer);
     }
@@ -22,11 +22,11 @@ public class BotMoves {
         //Ако животът на ботът е над 75% -> атака
         else if ((double) bot.maxHealth / bot.getHealth()>=0.75) {
             if(Math.random()<0.8)bot.attack(realPlayer);
-            else bot.useAbility(bot);
+            else bot.useAbility();
         }
 
         //Ако хийл ще спаси бота от смърт при 2 удара на играча -> абилити
-        else if(bot.increaseHealth()>realPlayer.getDamage()*2) bot.useAbility(bot);
+        else if(bot.increaseHealth()>realPlayer.getDamage()*2) bot.useAbility();
 
         else bot.attack(realPlayer);
     }
@@ -47,7 +47,7 @@ public class BotMoves {
                 bot.getDamage()*2<realPlayer.getHealth()){
 
                 //80% шанс това да се случи за да бъде бота малко по-реалистичен
-                if(Math.random()<0.8) bot.useAbility(bot);
+                if(Math.random()<0.8) bot.useAbility();
                 else bot.attack(realPlayer);
         }
 

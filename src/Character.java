@@ -37,7 +37,7 @@ abstract   class Character implements Playable {
     abstract boolean isAlive();
 
     //Метод за използване на специално умение
-    abstract void useAbility(Character target);
+    abstract void useAbility();
 
     //Метод за показвеане на информацията за героя
     abstract void showInfo();
