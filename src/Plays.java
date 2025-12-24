@@ -53,7 +53,10 @@ public class Plays {
 
        Scanner scanner = new Scanner(System.in);
        System.out.println("It's your turn: ");
-       System.out.println("1.Attack\n2.Special ability");
+       if(yourCharacter.getIsAbilityOn())
+           System.out.println("Ability is already on! \n 1.Attack ");
+       else
+           System.out.println("1.Attack\n2.Special ability");
        System.out.print("Your choice: ");
 
        while (true) {
@@ -68,7 +71,8 @@ public class Plays {
                    }
                    case 2 -> {
                        System.out.println(" ");
-                       yourCharacter.useAbility();
+                       if (yourCharacter.getIsAbilityOn())  throw new IllegalArgumentException("\nInvalid choice! ");
+                       else yourCharacter.useAbility();
                        return;
                    }
                    default -> {
@@ -80,7 +84,10 @@ public class Plays {
                }
            } catch (Exception e) {
                System.out.println(e.getMessage());
-               System.out.println("1.Attack\n2.Special ability");
+               if(yourCharacter.getIsAbilityOn())
+                   System.out.println("Ability is already on! \n 1.Attack ");
+               else
+                   System.out.println("1.Attack\n2.Special ability");
                System.out.print("Your choice: ");
                scanner.nextLine();
            }

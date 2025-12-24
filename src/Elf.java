@@ -18,7 +18,7 @@ public class Elf extends Character implements Playable{
         int currentHealth = getHealth();
         if(isAbilityOn) {
             System.out.println(getName()+ " -"+ reduceEnemyDamage(damage) + "HP");
-            setHealth(reduceEnemyDamage(damage));
+            setHealth(currentHealth-reduceEnemyDamage(damage));
             isAbilityOn=false;
         }
         else{

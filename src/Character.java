@@ -3,6 +3,7 @@ abstract   class Character implements Playable {
     private String name;  //Името на героя
     private int health;     //живот на героя
     private int damage;     //щетата която нанася
+    private boolean isAbilityOn;    //абилити
 
     public String getType(){return type;}
 
@@ -29,6 +30,8 @@ abstract   class Character implements Playable {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+    public boolean getIsAbilityOn() {return isAbilityOn;}
 
     //Meтод за поемане на щета
     abstract void takeDamage( int damage);

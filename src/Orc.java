@@ -9,8 +9,6 @@ public class Orc extends Character implements Playable{
         isAbilityOn=false;
         type="orc";
     }
-    public String getType(){return type;}
-    public boolean getIsAbilityOn() {return isAbilityOn;}
 
     @Override
     void takeDamage(int damage){
