@@ -62,15 +62,17 @@ public class Plays {
 
                switch (choice) {
                    case 1 -> {
-                       System.out.println(yourCharacter.getName()+" attacked! \n");
+                       System.out.println(" ");
                        yourCharacter.attack(enemyCharacter);
                        return;
                    }
                    case 2 -> {
+                       System.out.println(" ");
                        yourCharacter.useAbility();
                        return;
                    }
                    default -> {
+                       System.out.println(" ");
                        throw new IllegalArgumentException("\nInvalid choice! ");
                    }
 

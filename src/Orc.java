@@ -14,6 +14,7 @@ public class Orc extends Character implements Playable{
 
     @Override
     void takeDamage(int damage){
+        System.out.println(getName()+ " -"+ damage + "HP");
         int currentHealth = getHealth();
         setHealth(currentHealth-=damage);
     }
@@ -42,12 +43,10 @@ public class Orc extends Character implements Playable{
     public void attack(Character target){
         if(isAbilityOn) {
             target.takeDamage(getDamageAfterAbility());
-            System.out.println(getName() + " dealt "+ getDamageAfterAbility()+ " HP!");
             isAbilityOn = false;
         }
         else {
             target.takeDamage(getDamage());
-            System.out.println(getName() + " dealt " + getDamage() + " HP!");
         }
     }
     int getDamageAfterAbility(){

@@ -17,11 +17,18 @@ public class Elf extends Character implements Playable{
     void takeDamage(int damage){
         int currentHealth = getHealth();
         if(isAbilityOn) {
+            System.out.println(getName()+ " -"+ reduceEnemyDamage(damage) + "HP");
             setHealth(reduceEnemyDamage(damage));
             isAbilityOn=false;
         }
-        else
+        else{
+            System.out.println(getName()+ " -"+ damage + "HP");
             setHealth(currentHealth-=damage);
+        }
+
+    }
+    int reduceEnemyDamage(int enemyDamage){
+        return enemyDamage-4;
     }
     @Override
     boolean isAlive(){
@@ -29,13 +36,11 @@ public class Elf extends Character implements Playable{
     }
     @Override
     void useAbility(){//Включва абилити
-        if(isAbilityOn)
+        if(!isAbilityOn)
             isAbilityOn=true;
         System.out.println(this.getName() + " reduced damage taken from the hext hit!");
     }
-    int reduceEnemyDamage(int enemyDamage){
-        return enemyDamage-4;
-    }
+
     @Override
     void showInfo(){
         System.out.println("Elf{" +

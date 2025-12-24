@@ -11,6 +11,7 @@ public class Human extends Character implements Playable{
     public String getType(){return type;}
     @Override
     void takeDamage(int damage){
+        System.out.println(getName()+ " -"+ damage + "HP");
         int currentHealth = getHealth();
         setHealth(currentHealth-=damage);
     }
