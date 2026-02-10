@@ -21,8 +21,11 @@ public class BotMoves {
         }
 
         //Ако избегне удар и може да убие в следващ ход -> абилити
-        else if(bot.getHealth()> bot.reduceEnemyDamage(realPlayer.getDamage()) && bot.getDamage()>= realPlayer.getHealth())
-            bot.useAbility();
+        else if(bot.getHealth()> bot.reduceEnemyDamage(realPlayer.getDamage()) && bot.getDamage()>= realPlayer.getHealth()) {
+            if (random.nextDouble() < 0.8) bot.useAbility();
+            else bot.attack(realPlayer);
+            return;
+        }
 
         else bot.attack(realPlayer);
     }
@@ -30,16 +33,25 @@ public class BotMoves {
     static void humanTurn(Human bot, Character realPlayer){
 
         //Ако ботът може да убиe истинският играч в един ход -> атака
-        if(bot.getDamage()>realPlayer.getHealth()) bot.attack(realPlayer);
+        if(bot.getDamage()>realPlayer.getHealth()){
+            if(random.nextDouble()<0.75) bot.attack(realPlayer);
+            else bot.useAbility();
+            return;
+        }
 
         //Ако животът на ботът е над 75% -> атака
         else if ((double) bot.maxHealth / bot.getHealth()>=0.75) {
-            if(Math.random()<0.8)bot.attack(realPlayer);
+            if(random.nextDouble()<0.8)bot.attack(realPlayer);
             else bot.useAbility();
+            return;
         }
 
         //Ако хийл ще спаси бота от смърт при 2 удара на играча -> абилити
-        else if(bot.increaseHealth()>realPlayer.getDamage()*2) bot.useAbility();
+        else if(bot.increaseHealth()>realPlayer.getDamage()*2){
+            if(random.nextDouble()<0.9) bot.useAbility();
+            else bot.attack(realPlayer);
+            return;
+        }
 
         else bot.attack(realPlayer);
     }
@@ -47,13 +59,23 @@ public class BotMoves {
     static void orcTurn(Orc bot, Character realPlayer){
 
         //Ако ботът може да убиe истинският играч в един ход -> атака
-        if(bot.getDamage()>=realPlayer.getHealth()) bot.attack(realPlayer);
+        if(bot.getDamage()>=realPlayer.getHealth()){
+            if(random.nextDouble()<0.75)bot.attack(realPlayer);
+            else bot.useAbility();
+            return;
+        }
 
         //Ако абилитито е вече включено -> атака
-        else if(bot.getIsAbilityOn()) bot.attack(realPlayer);
+        else if(bot.getIsAbilityOn()) {
+            bot.attack(realPlayer);
+            return;
+        }
 
         //Ако ботът ще умре при следващ удар на противника -> атака
-        else if(bot.getHealth()<= realPlayer.getDamage()) bot.attack(realPlayer);
+        else if(bot.getHealth()<= realPlayer.getDamage()) {
+            bot.attack(realPlayer);
+            return;
+        }
 
         //Ако ботът може да убие след като ползва абилити -> абилити
         else if(bot.getDamageAfterAbility()>=realPlayer.getHealth() &&
@@ -62,6 +84,7 @@ public class BotMoves {
                 //80% шанс това да се случи за да бъде бота малко по-реалистичен
                 if(Math.random()<0.8) bot.useAbility();
                 else bot.attack(realPlayer);
+                return;
         }
 
         else bot.attack(realPlayer);
