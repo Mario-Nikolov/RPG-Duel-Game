@@ -1,11 +1,24 @@
+import java.util.Random;
+
 public class BotMoves {
+    private static final Random random = new Random();
+
     static void elfTurn(Elf bot, Character realPlayer){
 
         //Ако абилитито е вече включено -> атака
-        if(bot.getIsAbilityOn()) bot.attack(realPlayer);
+        if(bot.getIsAbilityOn()){
+            bot.attack(realPlayer);
+            return;
+        }
 
         //Ако животът на истинският играч е по-нисък от демиджа на бота -> атака
-        else if(bot.getDamage()> realPlayer.getHealth()) bot.attack(realPlayer);
+        boolean canKillNow = bot.getDamage()>= realPlayer.getHealth();
+        if(canKillNow){
+            //Добавяме малък шанс за грешка на бота
+            if(random.nextDouble()<0.90)bot.attack(realPlayer);
+            else bot.useAbility();
+            return;
+        }
 
         //Ако избегне удар и може да убие в следващ ход -> абилити
         else if(bot.getHealth()> bot.reduceEnemyDamage(realPlayer.getDamage()) && bot.getDamage()>= realPlayer.getHealth())

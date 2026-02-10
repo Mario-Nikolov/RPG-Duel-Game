@@ -10,9 +10,6 @@ public class Elf extends Character implements Playable{
         isAbilityOn=false;
         type="elf";
     }
-    public boolean getIsAbilityOn() {return isAbilityOn;}
-    public String getType(){return type;}
-
     @Override
     void takeDamage(int damage){
         int currentHealth = getHealth();
