@@ -1,3 +1,7 @@
+package Characters;
+
+import java.io.PrintWriter;
+
 public class Human extends Character implements Playable{
 
     final int maxHealth = 120;
@@ -17,12 +21,12 @@ public class Human extends Character implements Playable{
     }
 
     @Override
-    boolean isAlive(){
+    public boolean isAlive(){
         return getHealth() > 0;
     }
 
     @Override
-    void useAbility(){  //Healing
+    public void useAbility(){  //Healing
         setHealth(increaseHealth());
     }
     int increaseHealth(){
@@ -32,8 +36,8 @@ public class Human extends Character implements Playable{
     }
 
     @Override
-    void showInfo(){
-        System.out.println("Human{" +
+    public void showInfo(PrintWriter out){
+        out.println("Characters.Human{" +
                 "Name: " + getName()  +
                 "   Health: " + getHealth()+
                 "   Damage: " + getDamage() +

@@ -1,4 +1,8 @@
-abstract   class Character implements Playable {
+package Characters;
+
+import java.io.PrintWriter;
+
+public abstract   class Character implements Playable {
     protected CharacterType type;
     private String name;  //Името на героя
     private int health;     //живот на героя
@@ -37,11 +41,11 @@ abstract   class Character implements Playable {
     abstract void takeDamage( int damage);
 
     //Метод за проверка дали героят е жив
-    abstract boolean isAlive();
+    public abstract boolean isAlive();
 
     //Метод за използване на специално умение
-    abstract void useAbility();
+    public abstract void useAbility();
 
     //Метод за показвеане на информацията за героя
-    abstract void showInfo();
+    public abstract void showInfo(PrintWriter out);
 }

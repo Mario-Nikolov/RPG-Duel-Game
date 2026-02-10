@@ -1,3 +1,7 @@
+package Characters;
+
+import java.io.PrintWriter;
+
 public class Elf extends Character implements Playable{
 
     private boolean isAbilityOn;
@@ -28,19 +32,19 @@ public class Elf extends Character implements Playable{
         return enemyDamage-4;
     }
     @Override
-    boolean isAlive(){
+    public boolean isAlive(){
         return getHealth() > 0;
     }
     @Override
-    void useAbility(){//Включва абилити
+    public void useAbility(){//Включва абилити
         if(!isAbilityOn)
             isAbilityOn=true;
         System.out.println(this.getName() + " reduced damage taken from the hext hit!");
     }
 
     @Override
-    void showInfo(){
-        System.out.println("Elf{" +
+    public void showInfo(PrintWriter out){
+        out.println("Characters.Elf{" +
                 "Name: " + getName() +
                 "   Health: " + getHealth()+
                 "   Damage: " + getDamage() +

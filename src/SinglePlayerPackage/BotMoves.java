@@ -1,9 +1,15 @@
+package SinglePlayerPackage;
+
+import Characters.Elf;
+import Characters.Human;
+import Characters.Orc;
+
 import java.util.Random;
 
 public class BotMoves {
     private static final Random random = new Random();
 
-    static void elfTurn(Elf bot, Character realPlayer){
+    static void elfTurn(Elf bot, Characters.Character realPlayer){
 
         //Ако абилитито е вече включено -> атака
         if(bot.getIsAbilityOn()){
@@ -30,7 +36,7 @@ public class BotMoves {
         else bot.attack(realPlayer);
     }
 
-    static void humanTurn(Human bot, Character realPlayer){
+    static void humanTurn(Human bot, Characters.Character realPlayer){
 
         //Ако ботът може да убиe истинският играч в един ход -> атака
         if(bot.getDamage()>realPlayer.getHealth()){
@@ -56,7 +62,7 @@ public class BotMoves {
         else bot.attack(realPlayer);
     }
 
-    static void orcTurn(Orc bot, Character realPlayer){
+    static void orcTurn(Orc bot, Characters.Character realPlayer){
 
         //Ако ботът може да убиe истинският играч в един ход -> атака
         if(bot.getDamage()>=realPlayer.getHealth()){

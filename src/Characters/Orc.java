@@ -1,3 +1,7 @@
+package Characters;
+
+import java.io.PrintWriter;
+
 public class Orc extends Character implements Playable{
 
     final int maxHealth = 85;
@@ -18,19 +22,19 @@ public class Orc extends Character implements Playable{
     }
 
     @Override
-    void useAbility(){  //Увеличава нанесена щета
+    public void useAbility(){  //Увеличава нанесена щета
         if(!isAbilityOn) isAbilityOn=true;
         System.out.println(getName() + " increased it's damage!");
     }
 
     @Override
-    boolean isAlive(){
+    public boolean isAlive(){
         return getHealth() > 0;
     }
 
     @Override
-    void showInfo(){
-        System.out.println("Orc{" +
+    public void showInfo(PrintWriter out){
+        out.println("Characters.Orc{" +
                 "Name: " + getName()  +
                 "   Health: " + getHealth()+
                 "   Damage: " + getDamage() +
