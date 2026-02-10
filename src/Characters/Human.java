@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 
 public class Human extends Character implements Playable{
 
-    final int maxHealth = 120;
+    public final int maxHealth = 120;
     public Human(String name){
         setHealth(maxHealth);
         setName(name);
@@ -29,7 +29,7 @@ public class Human extends Character implements Playable{
     public void useAbility(){  //Healing
         setHealth(increaseHealth());
     }
-    int increaseHealth(){
+    public int increaseHealth(){
         int currentHealth = getHealth();
         System.out.println(getName() + " healed! (+12HP) ");
         return currentHealth+=12;

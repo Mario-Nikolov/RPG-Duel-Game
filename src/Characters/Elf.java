@@ -28,7 +28,7 @@ public class Elf extends Character implements Playable{
         }
 
     }
-    int reduceEnemyDamage(int enemyDamage){
+    public int reduceEnemyDamage(int enemyDamage){
         return enemyDamage-4;
     }
     @Override

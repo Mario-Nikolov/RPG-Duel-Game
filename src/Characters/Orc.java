@@ -51,7 +51,7 @@ public class Orc extends Character implements Playable{
             target.takeDamage(getDamage());
         }
     }
-    int getDamageAfterAbility(){
+    public int getDamageAfterAbility(){
         return this.getDamage()*2 + 4;
     }
 
