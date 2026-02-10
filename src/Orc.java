@@ -7,7 +7,7 @@ public class Orc extends Character implements Playable{
         setHealth(maxHealth);
         setDamage(18);
         isAbilityOn=false;
-        type="orc";
+        type=CharacterType.ORC;
     }
 
     @Override

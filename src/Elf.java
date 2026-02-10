@@ -8,7 +8,7 @@ public class Elf extends Character implements Playable{
         setDamage(16);
         setHealth(maxHealth);
         isAbilityOn=false;
-        type="elf";
+        type=CharacterType.ELF;
     }
     @Override
     void takeDamage(int damage){

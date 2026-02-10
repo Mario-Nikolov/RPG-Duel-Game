@@ -1,11 +1,11 @@
 abstract   class Character implements Playable {
-    protected String type;
+    protected CharacterType type;
     private String name;  //Името на героя
     private int health;     //живот на героя
     private int damage;     //щетата която нанася
     private boolean isAbilityOn;    //абилити
 
-    public String getType(){return type;}
+    public CharacterType getType(){return type;}
 
     public String getName() {
         return name;
@@ -44,6 +44,4 @@ abstract   class Character implements Playable {
 
     //Метод за показвеане на информацията за героя
     abstract void showInfo();
-
-
 }

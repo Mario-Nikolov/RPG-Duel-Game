@@ -115,7 +115,7 @@ public class Plays {
    public static void startGame(Character realPlayer, Character bot){
 
         switch(bot.getType()){
-            case "elf" -> {
+            case CharacterType.ELF -> {
                 while(true){
                     Plays.yourTurn(realPlayer,bot);
                     if(!Plays.CheckIsAlive(bot))
@@ -132,7 +132,7 @@ public class Plays {
                     System.out.println(" ");
                 }
             }
-            case "human" ->{
+            case CharacterType.HUMAN ->{
                 while (true){
                     Plays.yourTurn(realPlayer,bot);
                     if(!Plays.CheckIsAlive(bot)) break;
@@ -147,7 +147,7 @@ public class Plays {
                     System.out.println(" ");
                 }
             }
-            case "orc" -> {
+            case CharacterType.ORC -> {
                 while (true){
                     Plays.yourTurn(realPlayer,bot);
                     if(!Plays.CheckIsAlive(bot)) break;

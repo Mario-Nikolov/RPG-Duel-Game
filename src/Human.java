@@ -5,10 +5,10 @@ public class Human extends Character implements Playable{
         setHealth(maxHealth);
         setName(name);
         setDamage(12);
-        type="human";
+        type=CharacterType.HUMAN;
 
     }
-    public String getType(){return type;}
+
     @Override
     void takeDamage(int damage){
         System.out.println(getName()+ " -"+ damage + "HP");
