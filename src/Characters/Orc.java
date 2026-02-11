@@ -1,16 +1,16 @@
 package Characters;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 public class Orc extends Character implements Playable{
 
     final int maxHealth = 85;
-    private boolean isAbilityOn;
     public Orc(String name){
         setName(name);
         setHealth(maxHealth);
         setDamage(18);
-        isAbilityOn=false;
+        setAbilityOn(false);
         type=CharacterType.ORC;
     }
 
@@ -23,7 +23,7 @@ public class Orc extends Character implements Playable{
 
     @Override
     public void useAbility(){  //Увеличава нанесена щета
-        if(!isAbilityOn) isAbilityOn=true;
+        if(!getIsAbilityOn()) setAbilityOn(true);
         System.out.println(getName() + " increased it's damage!");
     }
 
@@ -34,7 +34,7 @@ public class Orc extends Character implements Playable{
 
     @Override
     public void showInfo(PrintWriter out){
-        out.println("Characters.Orc{" +
+        out.println("Orc{" +
                 "Name: " + getName()  +
                 "   Health: " + getHealth()+
                 "   Damage: " + getDamage() +
@@ -43,9 +43,9 @@ public class Orc extends Character implements Playable{
 
     @Override
     public void attack(Character target){
-        if(isAbilityOn) {
+        if(getIsAbilityOn()) {
             target.takeDamage(getDamageAfterAbility());
-            isAbilityOn = false;
+            setAbilityOn(false);
         }
         else {
             target.takeDamage(getDamage());
@@ -53,6 +53,40 @@ public class Orc extends Character implements Playable{
     }
     public int getDamageAfterAbility(){
         return this.getDamage()*2 + 4;
+    }
+
+    @Override
+    public void botTurn(Character enemy, Random random){
+        //Ако ботът може да убиe истинският играч в един ход -> атака
+        if(this.getDamage()>=enemy.getHealth()){
+            if(random.nextDouble()<0.75)this.attack(enemy);
+            else this.useAbility();
+            return;
+        }
+
+        //Ако абилитито е вече включено -> атака
+        else if(this.getIsAbilityOn()) {
+            this.attack(enemy);
+            return;
+        }
+
+        //Ако ботът ще умре при следващ удар на противника -> атака
+        else if(this.getHealth()<= enemy.getDamage()) {
+            this.attack(enemy);
+            return;
+        }
+
+        //Ако ботът може да убие след като ползва абилити -> абилити
+        else if(this.getDamageAfterAbility()>=enemy.getHealth() &&
+                this.getDamage()*2<enemy.getHealth()){
+
+            //80% шанс това да се случи за да бъде бота малко по-реалистичен
+            if(random.nextDouble()<0.8) this.useAbility();
+            else this.attack(enemy);
+            return;
+        }
+
+        else this.attack(enemy);
     }
 
 }

@@ -1,13 +1,14 @@
 package Characters;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 public abstract   class Character implements Playable {
     protected CharacterType type;
     private String name;  //Името на героя
     private int health;     //живот на героя
     private int damage;     //щетата която нанася
-    private boolean isAbilityOn;    //абилити
+    protected boolean isAbilityOn;    //абилити
 
     public CharacterType getType(){return type;}
 
@@ -30,6 +31,9 @@ public abstract   class Character implements Playable {
     public int getDamage() {
         return damage;
     }
+    public void setAbilityOn(boolean abilityOn) {
+        isAbilityOn = abilityOn;
+    }
 
     public void setDamage(int damage) {
         this.damage = damage;
@@ -48,4 +52,7 @@ public abstract   class Character implements Playable {
 
     //Метод за показвеане на информацията за героя
     public abstract void showInfo(PrintWriter out);
+
+    //Метод за бот логика
+    public abstract void botTurn(Character enemy, Random random);
 }

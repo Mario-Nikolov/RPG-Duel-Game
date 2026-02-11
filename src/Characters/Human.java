@@ -1,6 +1,7 @@
 package Characters;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 public class Human extends Character implements Playable{
 
@@ -46,6 +47,32 @@ public class Human extends Character implements Playable{
     @Override
     public void attack(Character target){
         target.takeDamage(getDamage());
+    }
+
+    @Override
+    public void botTurn(Character enemy, Random random){
+        //Ако ботът може да убиe истинският играч в един ход -> атака
+        if(this.getDamage()>enemy.getHealth()){
+            if(random.nextDouble()<0.75) this.attack(enemy);
+            else this.useAbility();
+            return;
+        }
+
+        //Ако животът на ботът е над 75% -> атака
+        else if ((double) this.maxHealth / this.getHealth()>=0.75) {
+            if(random.nextDouble()<0.8)this.attack(enemy);
+            else this.useAbility();
+            return;
+        }
+
+        //Ако хийл ще спаси бота от смърт при 2 удара на играча -> абилити
+        else if(this.increaseHealth()>enemy.getDamage()*2){
+            if(random.nextDouble()<0.9) this.useAbility();
+            else this.attack(enemy);
+            return;
+        }
+
+        else this.attack(enemy);
     }
 
 }

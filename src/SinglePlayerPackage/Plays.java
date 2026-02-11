@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Plays {
     public static final BufferedReader in;
+    public static final Random random  =new Random();
     static {
         try {
             in = new BufferedReader(new InputStreamReader(SinglePlayer.clientSocket.getInputStream()));
@@ -116,11 +117,6 @@ public class Plays {
            }
        }
    }
-//   public static void botTurn(Characters.Character realPlayer, Characters.Character bot){
-//        Random random = new Random();
-//
-//
-//   }
 
    public static boolean CheckIsAlive(Characters.Character character){
         if(!character.isAlive()) {
@@ -137,55 +133,20 @@ public class Plays {
 
    public static void startGame(Characters.Character realPlayer, Characters.Character bot){
 
-        switch(bot.getType()){
-            case CharacterType.ELF -> {
-                while(true){
-                    Plays.yourTurn(realPlayer,bot);
-                    if(!Plays.CheckIsAlive(bot))
-                        break;
+       while (true) {
+           Plays.yourTurn(realPlayer, bot);
+           if (!Plays.CheckIsAlive(bot)) break;
 
-                    out.println(" ");
+           out.println(" ");
 
-                    BotMoves.elfTurn((Elf) bot,realPlayer);
-                    if(!Plays.CheckIsAlive(realPlayer))
-                        break;
+           bot.botTurn(realPlayer,random);
+           if (!Plays.CheckIsAlive(realPlayer)) break;
 
-                    out.println(" ");
-                    showBothInfo(realPlayer,bot);
-                    out.println(" ");
-                }
-            }
-            case CharacterType.HUMAN ->{
-                while (true){
-                    Plays.yourTurn(realPlayer,bot);
-                    if(!Plays.CheckIsAlive(bot)) break;
+           out.println(" ");
+           Plays.showBothInfo(realPlayer, bot);
+           out.println(" ");
+       }
 
-                    out.println(" ");
-
-                    BotMoves.humanTurn((Human) bot,realPlayer);
-                    if(!Plays.CheckIsAlive(realPlayer)) break;
-
-                    out.println(" ");
-                    Plays.showBothInfo(realPlayer, bot);
-                    out.println(" ");
-                }
-            }
-            case CharacterType.ORC -> {
-                while (true){
-                    Plays.yourTurn(realPlayer,bot);
-                    if(!Plays.CheckIsAlive(bot)) break;
-
-                    out.println(" ");
-
-                    BotMoves.orcTurn((Orc) bot,realPlayer);
-                    if(!Plays.CheckIsAlive(realPlayer)) break;
-
-                    out.println(" ");
-                    Plays.showBothInfo(realPlayer, bot);
-                    out.println(" ");
-                }
-            }
-        }
    }
 
 }

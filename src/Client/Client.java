@@ -72,14 +72,13 @@ public class Client {
                 try{
                     int output = Integer.parseInt(line);
                     out.println(output);
-                    System.out.println("Sent " + output);
                 } catch (NumberFormatException e) {
                     System.out.println("Enter a number (1-3).");
                 }
             }
         });
 
-        t.setDaemon(true); // <— ключово: да не държи JVM жива
+        t.setDaemon(true);
         t.start();
     }
 }
