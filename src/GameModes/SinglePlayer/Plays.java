@@ -1,11 +1,9 @@
-package SinglePlayerPackage;
+package GameModes.SinglePlayer;
 
 import Characters.*;
-import Server.*;
 
 import java.io.*;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Plays {
     public static final BufferedReader in;

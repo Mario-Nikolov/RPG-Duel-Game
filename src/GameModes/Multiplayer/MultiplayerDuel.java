@@ -1,4 +1,4 @@
-package Server;
+package GameModes.Multiplayer;
 
 import java.net.Socket;
 

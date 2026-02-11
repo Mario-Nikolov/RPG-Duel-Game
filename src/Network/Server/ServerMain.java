@@ -1,4 +1,7 @@
-package Server;
+package Network.Server;
+
+import GameModes.Multiplayer.MultiplayerDuel;
+import GameModes.SinglePlayer.SinglePlayer;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -9,14 +12,14 @@ public class ServerMain {
     public static final int PORT = 5111;
     public static void main(String[] args) {
 
-        System.out.println("Server starting on port "+ PORT);
+        System.out.println("Network.Server starting on port "+ PORT);
         try(ServerSocket serverSocket = new ServerSocket(PORT);)  {
 
             while (true) {
-                System.out.println("Server listening on port " + PORT);
+                System.out.println("Network.Server listening on port " + PORT);
 
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Client connected: " + clientSocket.getInetAddress());
+                System.out.println("Network.Client connected: " + clientSocket.getInetAddress());
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()), true);
@@ -25,15 +28,15 @@ public class ServerMain {
                     int option;
                     out.println("_____MENU_____");
                     out.println("(1) Single player");
-                    out.println("(2) Multiplayer");
+                    out.println("(2) GameModes.Multiplayer");
                     out.println("(3) Exit game");
                     out.println("Enter option: ");
 
                     option = Integer.parseInt(in.readLine());
-                    System.out.println("Server received: " + option);
+                    System.out.println("Network.Server received: " + option);
                     switch (option) {
                         case 1 -> new Thread(new SinglePlayer(clientSocket)).start();   //Single player mode
-                        case 2 -> new Thread(new MultiplayerDuel(clientSocket)).start();    //Multiplayer duel mode
+                        case 2 -> new Thread(new MultiplayerDuel(clientSocket)).start();    //GameModes.Multiplayer duel mode
                         case 3 -> new ExitGame(clientSocket).endClientGame();
                         default -> throw new InvalidOptionException("Invalid option! Choose again: ");
                     }

@@ -1,7 +1,6 @@
-package Server;
+package GameModes.SinglePlayer;
 
 import Characters.Character;
-import SinglePlayerPackage.*;
 
 import java.io.*;
 import java.net.Socket;
